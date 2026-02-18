@@ -86,8 +86,10 @@ Se construyó el histograma correspondiente a los primeros 10 segundos de la se�
 Las diferencias obtenidas entre los cálculos manuales y los generados por las funciones de Python fueron prácticamente nulas, lo que valida la correcta implementación de las fórmulas matemáticas.
 
 
-## Archivo principal
+## Archivo principal de lo mencionado (Parte A)
 
 `ParteA.py`
 
+---
+# Parte B
 
