@@ -18,14 +18,6 @@ https://physionet.org/
 La señal analizada corresponde a un **Electrocardiograma (ECG)**.
 
 
-## Herramientas y librerías utilizadas
-
-- wfdb  
-- numpy  
-- matplotlib  
-- scipy  
-
-
 ## Procedimiento
 
 ### 1. Carga de la señal
