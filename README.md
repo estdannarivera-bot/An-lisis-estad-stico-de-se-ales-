@@ -85,3 +85,5 @@ Las diferencias obtenidas entre los cálculos manuales y los generados por las f
 ---
 # Parte B
 
+
+
