@@ -258,9 +258,18 @@ La señal se carga desde un archivo generado previamente (el de la parte B):
 
 ### Ruido gaussiano (ruido blanco)
 
-`media_ruido = 0
-/nstd_ruido = 0.05   # desviación estándar en voltios
-/nruido_gauss = np.random.normal(media_ruido, std_ruido, N)`
+`media_ruido = 0`
+`std_ruido = 0.05   # desviación estándar en voltios`
+`ruido_gauss = np.random.normal(media_ruido, std_ruido, N)`
+
+Este ruido simula:
+
+- Ruido térmico
+- Ruido electrónico del sistema
+- Interferencias aleatorias
+- Ruido blanco
+
+El parámetro mas importante para controlar la intensidad del ruido es:
 
 `std_ruido = 0.05`
 
