@@ -259,8 +259,8 @@ La señal se carga desde un archivo generado previamente (el de la parte B):
 ### Ruido gaussiano (ruido blanco)
 
 `media_ruido = 0
-std_ruido = 0.05   # desviación estándar en voltios
-ruido_gauss = np.random.normal(media_ruido, std_ruido, N)`
+/nstd_ruido = 0.05   # desviación estándar en voltios
+/nruido_gauss = np.random.normal(media_ruido, std_ruido, N)`
 
 `std_ruido = 0.05`
 
