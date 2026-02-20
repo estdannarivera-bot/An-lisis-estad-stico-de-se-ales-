@@ -7,6 +7,8 @@
 **Estudiantes:** Danna Rivera, Duvan Paez
 
 ---
+
+![ALGORITMO](ALGORITMO.jpeg)
 # Parte A
 ## Base de datos utilizada
 
