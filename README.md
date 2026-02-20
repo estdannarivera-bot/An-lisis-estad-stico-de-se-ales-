@@ -52,6 +52,64 @@ Se calcularon los siguientes estadísticos descriptivos:
 
 Se programaron directamente las fórmulas matemáticas para cada parámetro, utilizando operaciones básicas y estructuras de cálculo explícitas.
 
+## Lógica del cálculo manual de los estadísticos
+
+El cálculo manual de los estadísticos sigue una secuencia basada en sus definiciones matemáticas fundamentales. Primero se determina el número total de muestras `N`, ya que todos los cálculos posteriores se normalizan dividiendo entre este valor.
+
+### 1. Media
+
+La media representa el valor promedio de la señal y se calcula como:
+
+\[
+\mu = \frac{1}{N} \sum x_i
+\]
+
+La lógica consiste en sumar todas las muestras y dividir entre el total de datos.
+
+---
+
+### 2. Varianza y desviación estándar
+
+La varianza mide qué tanto se dispersan los datos respecto a la media:
+
+\[
+\sigma^2 = \frac{1}{N} \sum (x_i - \mu)^2
+\]
+
+Primero se centra la señal restando la media a cada valor.  
+Luego se eleva al cuadrado para evitar cancelaciones por signo.  
+Finalmente se promedian esas diferencias cuadráticas.
+
+La desviación estándar es la raíz cuadrada de la varianza:
+
+\[
+\sigma = \sqrt{\sigma^2}
+\]
+
+Esto permite expresar la dispersión en las mismas unidades de la señal original.
+
+---
+
+### 3. Estandarización
+
+Para analizar la forma de la distribución se normaliza la señal:
+
+\[
+z = \frac{x_i - \mu}{\sigma}
+\]
+
+Esto centra los datos en cero y elimina la escala, permitiendo comparar distribuciones independientemente de su amplitud.
+
+---
+
+### 4. Asimetría y curtosis
+
+La asimetría se calcula elevando al cubo los valores estandarizados, lo que permite detectar inclinación en la distribución.
+
+La curtosis eleva a la cuarta potencia los valores estandarizados, resaltando la presencia de picos pronunciados o valores extremos.
+
+En ambos casos, la lógica es analizar la forma de la distribución después de haber centrado y escalado la señal.
+
 #### Método 2: Funciones predefinidas
 
 Se utilizaron funciones de Python:
