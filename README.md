@@ -51,64 +51,99 @@ Se calcularon los siguientes estadísticos descriptivos:
 #### Método 1: Implementación manual
 
 Se programaron directamente las fórmulas matemáticas para cada parámetro, utilizando operaciones básicas y estructuras de cálculo explícitas.
+# Cálculo Manual de Estadísticos
 
-## Lógica del cálculo manual de los estadísticos
-
-El cálculo manual de los estadísticos sigue una secuencia basada en sus definiciones matemáticas fundamentales. Primero se determina el número total de muestras `N`, ya que todos los cálculos posteriores se normalizan dividiendo entre este valor.
-
-### 1. Media
-
-La media representa el valor promedio de la señal y se calcula como:
-
-\[
-\mu = \frac{1}{N} \sum x_i
-\]
-
-La lógica consiste en sumar todas las muestras y dividir entre el total de datos.
+El cálculo manual de los estadísticos se basa en aplicar directamente sus definiciones matemáticas sobre la señal.
 
 ---
 
-### 2. Varianza y desviación estándar
+## 1. Media
 
-La varianza mide qué tanto se dispersan los datos respecto a la media:
+La media representa el valor promedio de la señal.
 
-\[
-\sigma^2 = \frac{1}{N} \sum (x_i - \mu)^2
-\]
+**Fórmula:**
 
-Primero se centra la señal restando la media a cada valor.  
-Luego se eleva al cuadrado para evitar cancelaciones por signo.  
-Finalmente se promedian esas diferencias cuadráticas.
+μ = (1 / N) * sum(x_i)
 
-La desviación estándar es la raíz cuadrada de la varianza:
-
-\[
-\sigma = \sqrt{\sigma^2}
-\]
-
-Esto permite expresar la dispersión en las mismas unidades de la señal original.
+**Lógica del cálculo:**
+- Se suman todas las muestras de la señal.
+- Se divide el resultado entre el número total de datos (N).
+- Esto permite obtener el valor central de la señal.
 
 ---
 
-### 3. Estandarización
+## 2. Varianza
 
-Para analizar la forma de la distribución se normaliza la señal:
+La varianza mide la dispersión de los datos respecto a la media.
 
-\[
-z = \frac{x_i - \mu}{\sigma}
-\]
+**Fórmula:**
 
-Esto centra los datos en cero y elimina la escala, permitiendo comparar distribuciones independientemente de su amplitud.
+σ² = (1 / N) * sum((x_i − μ)²)
+
+**Lógica del cálculo:**
+- Se resta la media a cada muestra (centrado).
+- Se eleva cada diferencia al cuadrado para evitar cancelaciones por signo.
+- Se promedian esas diferencias cuadráticas.
+- El resultado indica qué tan dispersa está la señal.
 
 ---
 
-### 4. Asimetría y curtosis
+## 3. Desviación estándar
 
-La asimetría se calcula elevando al cubo los valores estandarizados, lo que permite detectar inclinación en la distribución.
+La desviación estándar es la raíz cuadrada de la varianza.
 
-La curtosis eleva a la cuarta potencia los valores estandarizados, resaltando la presencia de picos pronunciados o valores extremos.
+**Fórmula:**
 
-En ambos casos, la lógica es analizar la forma de la distribución después de haber centrado y escalado la señal.
+σ = sqrt(σ²)
+
+**Lógica del cálculo:**
+- Devuelve la dispersión a las mismas unidades originales de la señal.
+- Permite interpretar la variabilidad de forma más intuitiva.
+
+---
+
+## 4. Estandarización
+
+La estandarización elimina la escala de la señal y la centra en cero.
+
+**Fórmula:**
+
+z = (x_i − μ) / σ
+
+**Lógica del cálculo:**
+- Se resta la media.
+- Se divide por la desviación estándar.
+- Se obtiene una variable adimensional.
+- Permite analizar la forma de la distribución sin depender de la amplitud.
+
+---
+
+## 5. Asimetría y Curtosis
+
+**Asimetría:**  
+Evalúa si la distribución está inclinada hacia la derecha o izquierda.
+
+Se calcula elevando al cubo los valores estandarizados.
+
+**Curtosis:**  
+Evalúa qué tan pronunciados son los picos de la distribución.
+
+Se calcula elevando a la cuarta potencia los valores estandarizados.
+
+---
+
+En todos los casos, la lógica consiste en:
+1. Centrar la señal.
+2. Escalarla si es necesario.
+3. Analizar su dispersión o forma.
+
+
+
+
+
+
+
+
 
 #### Método 2: Funciones predefinidas
 
