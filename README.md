@@ -231,7 +231,90 @@ El cual contiene:
    
 ---
 # Parte B
+# Parte B
+## Adquisición y análisis de señal fisiológica con STM32
 
+En esta sección se generó una señal fisiológica del mismo tipo empleado en la Parte A mediante un generador biológico. La señal fue adquirida usando una tarjeta STM32, almacenada en formato .txt, procesada en Python y analizada estadísticamente.
+Archivo principal:
+
+`ParteB.py`
+
+## Configuración de adquisición
+
+-Puerto serial: COM5
+
+-Baudrate: 115200
+
+-Frecuencia de muestreo: 200 Hz
+
+-Tiempo de adquisición: 10 s
+
+-Resolución ADC: 12 bits (0–4095)
+
+-Voltaje de referencia: 3.3 V
+
+-Total de muestras:
+
+N = 200 × 10 = 2000
+```python
+FS = 200           # Frecuencia de muestreo (Hz)
+TIEMPO = 10        # segundos
+N = FS * TIEMPO    # muestras 
+```
+## Procedimiento
+### 1. Lectura de datos
+
+Se estableció comunicación serial con la STM32 utilizando la librería `serial`. El programa recibe los valores digitales del ADC hasta completar las 2000 muestras, validando que cada dato sea numérico antes de almacenarlo.
+
+
+###  2. Conversión a voltaje
+
+El ADC entrega valores entre 0 y 4095. Para obtener el voltaje real se utilizó:
+```python
+v = (x / ADC_MAX) * VREF
+v_mv = v * 1000 
+```
+Esta conversión es fundamental, ya que transforma los niveles digitales en una magnitud física real (voltaje).
+
+### 3. Construcción del eje temporal y visualización
+
+El eje de tiempo se generó mediante:
+```python
+t = np.arange(len(x)) / FS 
+```
+
+Se graficaron los 10 segundos adquiridos para analizar el comportamiento temporal de la señal.
+
+### 4. Parámetros estadísticos
+
+Se calcularon:
+
+-Media
+
+-Desviación estándar
+
+-Coeficiente de variación
+
+-Asimetría
+
+-Curtosis
+
+```python
+mu = np.mean(v)
+sigma = np.std(v)
+cv = sigma / mu
+sk = np.mean(((v - mu) / sigma) ** 3)
+ku = np.mean(((v - mu) / sigma) ** 4)
+```
+
+### 5. Histograma
+
+Se construyó el histograma de las muestras adquiridas para analizar la distribución de amplitudes.
+
+
+### Comparación con la Parte A
+
+En la Parte A se utilizó una señal de base de datos; en la Parte B se realizó adquisición real. Por ello, la señal puede presentar mayor variabilidad, ruido y efectos de cuantización del ADC, permitiendo un análisis más cercano a condiciones reales de medicición.}
 
 ---
 # Parte C
