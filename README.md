@@ -268,9 +268,6 @@ La señal se carga desde un archivo generado previamente (el de la parte B):
 
 ### Ruido gaussiano (ruido blanco)
 
-`media_ruido = 0  
-`
-`std_ruido = 0.05   # desviación estándar en voltios`
 `ruido_gauss = np.random.normal(media_ruido, std_ruido, N)`
 
 Este ruido simula:
@@ -286,27 +283,46 @@ El parámetro mas importante para controlar la intensidad del ruido es:
 
 ### Ruido impulsivo (picos aleatorios)
 
-`ruido_impulsivo = np.zeros(N)
-num_impulsos = int(0.01 * N)  # 1% de muestras con impulsos
-indices = np.random.randint(0, N, num_impulsos)
-ruido_impulsivo[indices] = np.random.uniform(-1, 1, num_impulsos)`
+`ruido_impulsivo[indices] = np.random.uniform(-1, 1, num_impulsos)`
+
+Este ruido simula:
+
+- Picos eléctricos
+- Interferencias
+- Descargas
+- Errores de transmisión
+
+Se caracteriza por pocos valores de gran amplitud, el parámetro mas importante controla la cantidad de impulsos:
 
 `num_impulsos = int(0.01 * N)`
 
 ### Ruido tipo artefacto (alta frecuencia)
 
-`frecuencia_muscular = 50  # Hz
-ruido_muscular = 0.02 * np.sin(2*np.pi*frecuencia_muscular*t)`
+`ruido_muscular = 0.02 * np.sin(2*np.pi*frecuencia_muscular*t)`
+
+Este ruido simula:
+
+- Actividad muscular
+- Artefactos fisiológicos
+- Ruido biológico
+- Interferencia por movimiento
+
+Es un ruido periódico de alta frecuencia por lo que este sera su parámetro mas importante:
 
 `frecuencia_muscular = 50`
-
 
 ## Contaminación de la señal 
 
 La contaminación se realiza digitalmente mediante suma directa:
 
-`senal_gauss = senal_real_v + ruido_gauss
-senal_impulsiva = senal_real_v + ruido_impulsivo
-senal_muscular = senal_real_v + ruido_muscular`
+`senal_contaminada = senal_real + ruido`
 
 Esto permite simular el efecto del ruido sobre la señal sin necesidad de hardware.
+
+## Uso
+
+1. Verificar que el archivo de señal esté en la carpeta del proyecto
+2. Ejecutar
+3. Visualizar las gráficas
+4. Revisar los archivos de resultados
+5. Analizar valores de SNR
