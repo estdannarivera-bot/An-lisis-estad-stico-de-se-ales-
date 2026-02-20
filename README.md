@@ -230,7 +230,7 @@ El cual contiene:
 5. Leer los datos desde el puerto COM
    
 ---
-# Parte B
+
 # Parte B
 ## Adquisición y análisis de señal fisiológica con STM32
 
@@ -314,7 +314,10 @@ Se construyó el histograma de las muestras adquiridas para analizar la distribu
 
 ### Comparación con la Parte A
 
-En la Parte A se utilizó una señal de base de datos; en la Parte B se realizó adquisición real. Por ello, la señal puede presentar mayor variabilidad, ruido y efectos de cuantización del ADC, permitiendo un análisis más cercano a condiciones reales de medicición.}
+En la Parte A se utilizó una señal de base de datos; en la Parte B se realizó adquisición real. Por ello, la señal puede presentar mayor variabilidad, ruido y efectos de cuantización del ADC, permitiendo un análisis más cercano a condiciones reales de medicición.
+La Parte A presenta mayor dispersión, asimetría y curtosis, lo que indica una distribución más variable y con picos más pronunciados. Además, la media cambia de signo por diferencias en el nivel DC.
+
+En cambio, la Parte B, al ser una señal adquirida con hardware real, muestra menor asimetría y curtosis, reflejando una distribución más moderada y condiciones reales de medición (ruido y efectos del ADC).
 
 ---
 # Parte C
