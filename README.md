@@ -83,6 +83,51 @@ Las diferencias obtenidas entre los cálculos manuales y los generados por las f
 `ParteA.py`
 
 ---
+# Configuración STM32
+
+## Sistema de adquisición y transmisión de datos
+
+Se utiliza una Blackpill STM32 como sistema de adquisición de datos:
+### Hardware:
+- Microcontrolador: STM32 Blackpill
+- Entrada analógica: Pin A0
+- Comunicación USB: USB CDC (Virtual COM Port)
+
+## Funcionamiento general
+
+El sistema realiza el siguiente proceso:
+1. Lectura de la señal analógica en el pin A0
+2. Conversión analógica-digital mediante el ADC interno del STM32
+3. Transferencia automática del dato usando DMA
+4. Envío del valor digital (en forma de texto) por USB al computador
+5. Recepción de los datos en python mediante un puerto serial virtual (COM)
+
+## Archivo principal 
+
+`PARTEC_LAB1.rar`
+
+Al extraer este archivo se encuentra la carpeta correspondiente al código de C, por lo que se debe buscar en MDK-ARM el archivo de keil, en este se busca: 
+
+`main.c`
+
+El cual contiene:
+
+- Configuración del ADC
+- Configuración del DMA
+- Configuración USB-CDC
+- Rutina de adquisición
+- Envío de datos por USB al PC 
+
+## Uso
+
+1. Conectar la señal analógica al pin A0
+2. Conectar la Blackpill por USB al computador
+3. Cargar el firmware en el STM32
+4. Abrir el script Python de adquisición
+`ParteB.py`
+5. Leer los datos desde el puerto COM
+   
+---
 # Parte B
 
 
