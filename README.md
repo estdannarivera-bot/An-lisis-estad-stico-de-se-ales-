@@ -130,5 +130,70 @@ El cual contiene:
 ---
 # Parte B
 
+---
+# Parte C
+
+## Análisis de ruido
+
+En esta parte se realiza el análisis de ruido por simulación en software, a partir de una señal real previamente capturada y almacenada en un archivo de texto.
+El objetivo es estudiar cómo diferentes tipos de ruido afcetan una señal biomédica y cómo se degrada su calidad.
+
+## Funcionamiento general
+
+El código realiza el siguiente proceso:
+1. Carga una señal desde un archivo .txt
+2. Genera ruido de forma digital (simulación matemática)
+3. Contamina la señal sumando el ruido
+4. Calcula la relación señal/ruido (SNR)
+5. Analiza estadísticamente la señal
+6. Genera gráficas e histogramas
+7. Guarda los resultados en archivos
+
+## Archivo principal
+
+`ParteC_simulacion.py`
+
+Este archivo contiene todo el procedimiento previamente visto.
+
+## Entrada de datos
+
+La señal se carga desde un archivo generado previamente (el de la parte B):
+
+`senal_real = np.loadtxt(ARCHIVO_SENAL)`
+
+## Tipos de ruidos
+
+### Ruido gaussiano (ruido blanco)
+
+`media_ruido = 0
+std_ruido = 0.05   # desviación estándar en voltios
+ruido_gauss = np.random.normal(media_ruido, std_ruido, N)`
+
+`std_ruido = 0.05`
+
+### Ruido impulsivo (picos aleatorios)
+
+`ruido_impulsivo = np.zeros(N)
+num_impulsos = int(0.01 * N)  # 1% de muestras con impulsos
+indices = np.random.randint(0, N, num_impulsos)
+ruido_impulsivo[indices] = np.random.uniform(-1, 1, num_impulsos)`
+
+`num_impulsos = int(0.01 * N)`
+
+### Ruido tipo artefacto (alta frecuencia)
+
+`frecuencia_muscular = 50  # Hz
+ruido_muscular = 0.02 * np.sin(2*np.pi*frecuencia_muscular*t)`
+
+`frecuencia_muscular = 50`
 
 
+## Contaminación de la señal 
+
+La contaminación se realiza digitalmente mediante suma directa:
+
+`senal_gauss = senal_real_v + ruido_gauss
+senal_impulsiva = senal_real_v + ruido_impulsivo
+senal_muscular = senal_real_v + ruido_muscular`
+
+Esto permite simular el efecto del ruido sobre la señal sin necesidad de hardware.
