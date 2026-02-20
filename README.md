@@ -51,19 +51,15 @@ Se calcularon los siguientes estadísticos descriptivos:
 #### Método 1: Implementación manual
 
 Se programaron directamente las fórmulas matemáticas para cada parámetro, utilizando operaciones básicas y estructuras de cálculo explícitas.
-# Cálculo Manual de Estadísticos
-
-El cálculo manual de los estadísticos se basa en aplicar directamente sus definiciones matemáticas sobre la señal.
-
----
 
 ## 1. Media
 
 La media representa el valor promedio de la señal.
 
 **Fórmula:**
-
-μ = (1 / N) * sum(x_i)
+```python
+media = sum(signal) / N
+```
 
 **Lógica del cálculo:**
 - Se suman todas las muestras de la señal.
@@ -77,8 +73,9 @@ La media representa el valor promedio de la señal.
 La varianza mide la dispersión de los datos respecto a la media.
 
 **Fórmula:**
-
-σ² = (1 / N) * sum((x_i − μ)²)
+```python
+var = sum((signal - media)**2) / N
+```
 
 **Lógica del cálculo:**
 - Se resta la media a cada muestra (centrado).
@@ -93,22 +90,37 @@ La varianza mide la dispersión de los datos respecto a la media.
 La desviación estándar es la raíz cuadrada de la varianza.
 
 **Fórmula:**
-
-σ = sqrt(σ²)
+```python
+std = np.sqrt(var)
+```
 
 **Lógica del cálculo:**
 - Devuelve la dispersión a las mismas unidades originales de la señal.
 - Permite interpretar la variabilidad de forma más intuitiva.
 
----
+## 4.Coeficiente de Variación
 
-## 4. Estandarización
-
-La estandarización elimina la escala de la señal y la centra en cero.
+Mide la variabilidad relativa respecto a la media.
 
 **Fórmula:**
+```python
+cv = std / media
+```
 
-z = (x_i − μ) / σ
+## 5. Estandarización
+
+La estandarización transforma la señal restando la media y dividiendo por la desviación estándar.
+**Fórmula:**
+```python
+z = (signal - media) / std
+```
+
+Esta variable `z` es la que se utiliza posteriormente para calcular la asimetría y la curtosis:
+
+```python
+skew_manual = sum(z**3) / N
+kurt = sum(z**4) / N
+```
 
 **Lógica del cálculo:**
 - Se resta la media.
@@ -116,29 +128,26 @@ z = (x_i − μ) / σ
 - Se obtiene una variable adimensional.
 - Permite analizar la forma de la distribución sin depender de la amplitud.
 
----
 
-## 5. Asimetría y Curtosis
+## 6. Asimetría y Curtosis
 
 **Asimetría:**  
+**Fórmula:**
+```python
+skew_manual = sum(((signal - media)/std)**3) / N
+```
 Evalúa si la distribución está inclinada hacia la derecha o izquierda.
 
 Se calcula elevando al cubo los valores estandarizados.
 
 **Curtosis:**  
+**Fórmula:**
+```python
+kurt = sum(((signal - media)/std)**4) / N
+```
 Evalúa qué tan pronunciados son los picos de la distribución.
 
 Se calcula elevando a la cuarta potencia los valores estandarizados.
-
----
-
-En todos los casos, la lógica consiste en:
-1. Centrar la señal.
-2. Escalarla si es necesario.
-3. Analizar su dispersión o forma.
-
-
-
 
 
 
