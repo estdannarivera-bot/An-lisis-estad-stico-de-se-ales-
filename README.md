@@ -232,6 +232,7 @@ El cual contiene:
 ---
 # Parte B
 
+
 ---
 # Parte C
 
